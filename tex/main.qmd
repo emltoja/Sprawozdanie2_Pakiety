@@ -26,3 +26,64 @@ Wykorzystamy następujące testy:
 -   **test t-Studenta**
 
 -   **test rang znakowanych Wilcoxona**
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(stats)
+```
+
+```{r}
+#| echo: false 
+
+## STATYSTKI 
+
+# Test Z 
+stat_z <- function(xs, mu, sigma) {
+  # Statystyka ta ma rozkład N(0, 1) przy założeniu hipotezy zerowej
+  zstat <- sqrt(length(xs)) * (mean(xs) - mu) / sigma
+  return(zstat)
+}
+
+# Test t-Studenta
+stat_student <- function(xs, mu) {
+  # Statystyka ta ma rozkład T(length(xs) - 1) przy założeniu hipotezy zerowej
+  tstat <- sqrt(length(xs)) * (mean(xs) - mu) / sd(xs)
+  return(tstat)
+}
+
+# Test rang znakowanych Wilcoxona
+stat_wilcoxon <- function(xs, mu) {
+  
+  diffs <- xs - mu
+  ranks <- rank(abs(diffs))
+  
+  # Rozkład tej statystyki jest znany (przy założeniu hipotezy zerowej jest on asymptotycznie normalny)
+  ustat <- sum(ranks[diffs > 0])
+  return(ustat)
+}
+```
+
+```{r}
+#| echo: false 
+
+## TESTY 
+
+# Test Z 
+
+ztest <- function(xs, mu, sigma, alpha=0.05) {
+  
+  z <- stat_z(xs, mu, sigma) 
+  
+  lower_q <- qnorm(alpha/2)
+  upper_q <- qnorm(1 - alpha/2)
+  
+  result <- as.logical((lower_q <= z && z <= upper_q))
+  p_value <- 2 * pnorm(abs(z_score), lower.tail = FALSE)
+  
+  
+  return(c(z, p_value, result))
+  
+}
+
+```
