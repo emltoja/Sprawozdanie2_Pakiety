@@ -58,8 +58,11 @@ stat_wilcoxon <- function(xs, mu) {
   diffs <- xs - mu
   ranks <- rank(abs(diffs))
   
+  sum_pos <- sum(ranks[diffs > 0])
+  sum_neg <- sum(ranks[diffs < 0])
+  
   # Rozkład tej statystyki jest znany (przy założeniu hipotezy zerowej jest on asymptotycznie normalny)
-  ustat <- sum(ranks[diffs > 0])
+  ustat <- min(sum_pos, sum_neg)
   return(ustat)
 }
 ```
@@ -69,21 +72,125 @@ stat_wilcoxon <- function(xs, mu) {
 
 ## TESTY 
 
+testinfo <- function(stat, pval, resu) {
+  return(list(
+    statystyka = stat,
+    pwartosc   = pval,
+    wynik      = resu
+  ))
+}
+
 # Test Z 
 
-ztest <- function(xs, mu, sigma, alpha=0.05) {
+ztest <- function(xs, mu, alpha=0.05) {
   
-  z <- stat_z(xs, mu, sigma) 
+  z <- stat_z(xs, mu, 2) 
   
   lower_q <- qnorm(alpha/2)
   upper_q <- qnorm(1 - alpha/2)
   
-  result <- as.logical((lower_q <= z && z <= upper_q))
-  p_value <- 2 * pnorm(abs(z_score), lower.tail = FALSE)
+  result <- (lower_q <= z && z <= upper_q)
+  p_value <- 2 * pnorm(abs(z), lower.tail = FALSE)
   
   
-  return(c(z, p_value, result))
+  return(testinfo(z, p_value, result))
   
 }
 
+# Test t-Studenta 
+
+ttest <- function(xs, mu, alpha=0.05) {
+  
+  t <- stat_student(xs, mu)
+  df <- length(xs) - 1
+  
+  lower_q <- qt(alpha/2, df)
+  upper_q <- qt(1 - alpha/2, df)
+  
+  result <- (lower_q <= t && t <= upper_q)
+  p_value <- 2 * pt(abs(t), df, lower.tail = FALSE)
+  
+  return(testinfo(t, p_value, result))
+}
+
+# Test znakowanych rang Wilcoxona 
+
+wtest <- function(xs, mu, alpha=0.05) {
+  
+  w <- stat_wilcoxon(xs, mu)
+  n <- length(xs)
+  
+  lower_q <- qsignrank(alpha/2, n)
+  upper_q <- qsignrank(1 - alpha/2, n)
+  
+  result <- (lower_q <= w && w <= upper_q)
+  p_value <- min(2 * psignrank(w-1, n, lower.tail=FALSE, 1))
+  
+  return(testinfo(w, p_value, result))
+}
+
 ```
+
+```{r}
+#| echo: false
+
+## WYKRESY FUNKCJI MOCY
+plot_test_power <- function(dist, n, params, inter, MCS=100) {
+  
+  gensample <- if (dist == "norm") {
+    function() {
+      return(rnorm(n, params[1], params[2]))
+    }
+  } else {
+    function() {
+      return(rexp(n, params[1]))
+    }
+  }
+
+  ilen = length(inter)
+  
+  z_power <- numeric(ilen)
+  t_power <- numeric(ilen)
+  w_power <- numeric(ilen)
+  
+  for (i in seq_along(inter)) {
+    
+    mu = inter[i]
+    
+    z_correct <- MCS
+    t_correct <- MCS
+    w_correct <- MCS
+    
+    for (j in seq_len(MCS)) {
+      sample <- gensample()
+      z_correct = z_correct - ztest(sample, mu)$wynik
+      t_correct = t_correct - ttest(sample, mu)$wynik
+      w_correct = w_correct - wtest(sample, mu)$wynik
+    }
+    
+    z_power[i] = z_correct / MCS
+    t_power[i] = t_correct / MCS
+    w_power[i] = w_correct / MCS
+    
+    
+  }
+  
+  values <- data.frame(
+    mu = inter, 
+    z = z_power, 
+    t = t_power, 
+    w = w_power
+  )
+  
+  df_long <- tidyr::gather(values, key = "variable", value = "value", -mu)
+
+  # Plot each column against mu
+  ggplot(df_long, aes(x = mu, y = value, color = variable)) +
+    geom_line() +
+    labs(x = "mu", y = "Value", title = "Plot of z, t, w vs. mu") +
+    scale_color_manual(values = c("z" = "blue", "t" = "green", "w" = "red"))  
+}
+
+```
+
+# Zadanie 1
