@@ -1,0 +1,28 @@
+---
+title: "Sprawozdanie 2. Grupa 3. Testowanie hipotez statystycznych"
+author: "Emil Olszewski, Jakub Kempa"
+format: pdf
+editor: visual
+---
+
+# Wporwadzenie
+
+Będziemy testować hipotezy statystyczne na poziomie istotności $\alpha = 0,05$. Przestestujemy hipotezę
+
+$$
+ H_0: \mu = 1
+$$
+
+przeciwko
+
+$$
+H_1: \mu \ne 1
+$$
+
+Wykorzystamy następujące testy:
+
+-   **test z** przy założeniu $\sigma = 2$
+
+-   **test t-Studenta**
+
+-   **test rang znakowanych Wilcoxona**
