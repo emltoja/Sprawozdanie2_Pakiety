@@ -5,6 +5,7 @@ format: pdf
 editor: visual
 ---
 
+
 # 1. Wprowadzenie
 
 Będziemy testować hipotezy statystyczne na poziomie istotności $\alpha = 0.05$. Przestestujemy hipotezę
@@ -27,12 +28,14 @@ Wykorzystamy następujące testy:
 
 -   **test rang znakowanych Wilcoxona**
 
+
 ```{r}
 #| echo: false
 #| waring: false
 library(tidyverse)
 library(stats)
 ```
+
 
 ## 1.1 Wstęp do hipotezy zerowej
 
@@ -73,6 +76,7 @@ Moc testu statystycznego mierzy jego zdolność do wykrywania rzeczywistego efek
 6.  **Założenia**: Naruszenie założeń testu statystycznego może zmniejszyć jego moc. Zapewnienie, że dane spełniają założenia wybranego testu, może pomóc maksymalizować moc.
 
 Ogólnie rzecz biorąc, maksymalizacja mocy polega na równoważeniu tych czynników w celu uzyskania testu wystarczająco wrażliwego do wykrycia istotnych efektów, jednocześnie kontrolując błędy pierwszego i drugiego rodzaju.
+
 
 ```{r}
 #| echo: false 
@@ -234,6 +238,7 @@ plot_test_power <- function(dist, n, param, inter, MCS=100) {
 
 ```
 
+
 # 2. Zadanie 1.
 
 Treść zadania: *Rozważmy próbę* $(X_1, ..., X_100)$ *z rozkładu normalnego* $\mathcal{N}(\mu, 2^2)$*. Korzystając z symulacji Monte Carlo wykonaj wykres funkcji mocy w zależności od* $\mu$ *na przedziale* $(−1, 3)$ *dla wszystkich trzech testów. Czy istnieje test jednostajnie najmocniejszy spośród nich?*
@@ -252,9 +257,11 @@ Zatem, tak jak wspomniane w sekcji 1.1
 
 Wykres prezentuje się następująco:
 
+
 ```{r}
 plot_test_power("norm", 100, 2, seq(-1, 3, length.out=50), MCS=1000)
 ```
+
 
 Jak widzimy wykresy wszystkich trzech testów pokrywają się ze sobą. Sugeruje to, że wszystkie trzy testy mają podobne możliwości wykrywania prawdziwego efektu lub różnicy. Może to oznaczać, że każdy z testów jest równie odpowiedni dla danego scenariusza i że ich wyniki są porównywalne pod względem mocy statystycznej. Zatem z podanych parametrów nie istnieje test jednostajnie najmocniejszy spośród nich.
 
@@ -279,9 +286,11 @@ Zatem:
 
 Wykres prezentuje się następująco:
 
+
 ```{r}
 plot_test_power("norm", 100, 4, seq(-1, 3, length.out=50), MCS=1000)
 ```
+
 
 Funkcje mocy testów zmieniły się:
 
@@ -312,9 +321,11 @@ Zatem:
 
 Wykres prezentuje się następująco:
 
+
 ```{r}
 plot_test_power("exp", 100, NULL, seq(0, 2, length.out=50), MCS=1000)
 ```
+
 
 Ponownie patrzymy na zachowanie funkcji dla $\mu = \mu_0$, przy czym $\mu_0 = 1$. Dla takich parametrów widzimy trzy różne wyniki:
 
@@ -323,3 +334,4 @@ Ponownie patrzymy na zachowanie funkcji dla $\mu = \mu_0$, przy czym $\mu_0 = 1$
 -   Test t-studenta jest słabszy, niż test rang znakowanych Wilcoxona dla testowania hipotezy zerowej, jednak ma ze wszystkich trzech testów najniższy poziom błędów I-go rodzaju.
 
 -   Test z to najsłabszy z testów dla podanych parametrów: Niska moc testu dla $\mu=\mu_0$ oraz większy, niż dla t-studenta poziom błędów I-go rodzaju sugeruje niską użyteczność dla danych o zakładanych parametrach.
+
