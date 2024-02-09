@@ -29,7 +29,7 @@ Wykorzystamy następujące testy:
 
 ```{r}
 #| echo: false
-#| waring: false
+#| warning: false
 library(tidyverse)
 library(stats)
 ```
@@ -65,7 +65,7 @@ Moc testu statystycznego mierzy jego zdolność do wykrywania rzeczywistego efek
 
 2.  **Wielkość próby**: Liczba obserwacji lub uczestników badania. Większe próby zazwyczaj prowadzą do większej mocy, ponieważ dostarczają więcej informacji i zmniejszają efekty losowej zmienności.
 
-3.  **Poziom istotności (\$\\alpha\$)**: Próg określający istotność statystyczną. Obniżenie poziomu istotności zmniejsza prawdopodobieństwo popełnienia błędu pierwszego rodzaju (fałszywy wynik pozytywny), ale również zmniejsza moc testu.
+3.  **Poziom istotności ($\alpha$)**: Próg określający istotność statystyczną. Obniżenie poziomu istotności zmniejsza prawdopodobieństwo popełnienia błędu pierwszego rodzaju (fałszywy wynik pozytywny), ale również zmniejsza moc testu.
 
 4.  **Zmiennosć lub odchylenie standardowe**: Stopień rozrzutu danych. Testy są bardziej efektywne, gdy zmienność jest mniejsza.
 
@@ -237,7 +237,7 @@ plot_test_power <- function(dist, n, param, inter, MCS=100) {
 
 # 2. Zadanie 1.
 
-Treść zadania: *Rozważmy próbę* $(X_1, ..., X_100)$ *z rozkładu normalnego* $\mathcal{N}(\mu, 2^2)$*. Korzystając z symulacji Monte Carlo wykonaj wykres funkcji mocy w zależności od* $\mu$ *na przedziale* $(−1, 3)$ *dla wszystkich trzech testów. Czy istnieje test jednostajnie najmocniejszy spośród nich?*
+Treść zadania: *Rozważmy próbę* $(X_1, ..., X_{100})$ *z rozkładu normalnego* $\mathcal{N}(\mu, 2^2)$*. Korzystając z symulacji Monte Carlo wykonaj wykres funkcji mocy w zależności od* $\mu$ *na przedziale* $(−1, 3)$ *dla wszystkich trzech testów. Czy istnieje test jednostajnie najmocniejszy spośród nich?*
 
 Zatem, tak jak wspomniane w sekcji 1.1
 
@@ -261,7 +261,7 @@ Jak widzimy wykresy wszystkich trzech testów pokrywają się ze sobą. Sugeruje
 
 # 3. Zadanie 2.
 
-Treść zadania: *Rozważmy próbę* $(X_1, ..., X_100)$ *z rozkładu normalnego* $\mathcal{N}(\mu, 4^2)$*. Wykonaj wykres
+Treść zadania: *Rozważmy próbę* $(X_1, ..., X_{100})$ *z rozkładu normalnego* $\mathcal{N}(\mu, 4^2)$*. Wykonaj wykres
 funkcji mocy na wybranym przedziale zawierającym przynajmniej po jednym punkcie
 z hipotezy zerowej i alternatywnej. Jak zmieniła się funkcja mocy testów? Czy w tym
 przypadku istnieje test jednostajnie najmocniejszy spośród nich?*
@@ -294,7 +294,7 @@ Na bazie wyglądu wykresów funkcji mocy testów możemy stwierdzić, że w tym 
 
 # 4. Zadanie 3.
 
-Treść zadania: *Rozważmy próbę* $(X_1, ..., X_100)$ *z rozkładu wykładniczego* $\mathcal{E}(\frac{1}{\mu})$*. Wykonaj wykres
+Treść zadania: *Rozważmy próbę* $(X_1, ..., X_{100})$ *z rozkładu wykładniczego* $\mathcal{E}(\frac{1}{\mu})$*. Wykonaj wykres
 funkcji mocy na wybranym przedziale zawierającym przynajmniej po jednym punkcie
 z hipotezy zerowej i alternatywnej. Jak zmieniła się funkcja mocy testów? Czy w tym
 przypadku istnieje test jednostajnie najmocniejszy spośród nich?*
