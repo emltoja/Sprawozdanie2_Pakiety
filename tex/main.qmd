@@ -65,7 +65,7 @@ Moc testu statystycznego mierzy jego zdolność do wykrywania rzeczywistego efek
 
 2.  **Wielkość próby**: Liczba obserwacji lub uczestników badania. Większe próby zazwyczaj prowadzą do większej mocy, ponieważ dostarczają więcej informacji i zmniejszają efekty losowej zmienności.
 
-3.  **Poziom istotności ($\alpha$)**: Próg określający istotność statystyczną. Obniżenie poziomu istotności zmniejsza prawdopodobieństwo popełnienia błędu pierwszego rodzaju (fałszywy wynik pozytywny), ale również zmniejsza moc testu.
+3.  **Poziom istotności (**$\alpha$): Próg określający istotność statystyczną. Obniżenie poziomu istotności zmniejsza prawdopodobieństwo popełnienia błędu pierwszego rodzaju (fałszywy wynik pozytywny), ale również zmniejsza moc testu.
 
 4.  **Zmiennosć lub odchylenie standardowe**: Stopień rozrzutu danych. Testy są bardziej efektywne, gdy zmienność jest mniejsza.
 
@@ -261,10 +261,7 @@ Jak widzimy wykresy wszystkich trzech testów pokrywają się ze sobą. Sugeruje
 
 # 3. Zadanie 2.
 
-Treść zadania: *Rozważmy próbę* $(X_1, ..., X_{100})$ *z rozkładu normalnego* $\mathcal{N}(\mu, 4^2)$*. Wykonaj wykres
-funkcji mocy na wybranym przedziale zawierającym przynajmniej po jednym punkcie
-z hipotezy zerowej i alternatywnej. Jak zmieniła się funkcja mocy testów? Czy w tym
-przypadku istnieje test jednostajnie najmocniejszy spośród nich?*
+Treść zadania: *Rozważmy próbę* $(X_1, ..., X_{100})$ *z rozkładu normalnego* $\mathcal{N}(\mu, 4^2)$*. Wykonaj wykres funkcji mocy na wybranym przedziale zawierającym przynajmniej po jednym punkcie z hipotezy zerowej i alternatywnej. Jak zmieniła się funkcja mocy testów? Czy w tym przypadku istnieje test jednostajnie najmocniejszy spośród nich?*
 
 Zatem:
 
@@ -290,14 +287,11 @@ Funkcje mocy testów zmieniły się:
 
 -   Wykres funkcji mocy testu t-studenta odbiega od funkcji mocy pozostałych dwóch testów. Jego wygląd sugeruje, że moc testu t-studenta jest większa od pozostałych dwóch testów dla zadanych parametrów; test w większą skutecznością jest w stanie wykryć fałszywą hipotezę zerową, niż pozostałe dwa testy.
 
-Na bazie wyglądu wykresów funkcji mocy testów możemy stwierdzić, że w tym przypadku testem jednostajnie najmocniejszym będzie test t-studenta.
+Na bazie wyglądu wykresów funkcji mocy testów możemy stwierdzić, że w tym przypadku testem jednostajnie najmocniejszym będzie test rang znakowanych wilsona *z*
 
 # 4. Zadanie 3.
 
-Treść zadania: *Rozważmy próbę* $(X_1, ..., X_{100})$ *z rozkładu wykładniczego* $\mathcal{E}(\frac{1}{\mu})$*. Wykonaj wykres
-funkcji mocy na wybranym przedziale zawierającym przynajmniej po jednym punkcie
-z hipotezy zerowej i alternatywnej. Jak zmieniła się funkcja mocy testów? Czy w tym
-przypadku istnieje test jednostajnie najmocniejszy spośród nich?*
+Treść zadania: *Rozważmy próbę* $(X_1, ..., X_{100})$ *z rozkładu wykładniczego* $\mathcal{E}(\frac{1}{\mu})$*. Wykonaj wykres funkcji mocy na wybranym przedziale zawierającym przynajmniej po jednym punkcie z hipotezy zerowej i alternatywnej. Jak zmieniła się funkcja mocy testów? Czy w tym przypadku istnieje test jednostajnie najmocniejszy spośród nich?*
 
 Zatem:
 
@@ -324,3 +318,5 @@ Ponownie patrzymy na zachowanie funkcji dla $\mu = \mu_0$, przy czym $\mu_0 = 1$
 -   Test t-studenta jest słabszy, niż test rang znakowanych Wilcoxona dla testowania hipotezy zerowej, jednak ma ze wszystkich trzech testów najniższy poziom błędów I-go rodzaju.
 
 -   Test z to najsłabszy z testów dla podanych parametrów: Niska moc testu dla $\mu=\mu_0$ oraz większy, niż dla t-studenta poziom błędów I-go rodzaju sugeruje niską użyteczność dla danych o zakładanych parametrach.
+
+Spośród tych testów nie ma jednak testu jednostajnie najmocniejszego.
