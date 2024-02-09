@@ -36,6 +36,7 @@ library(stats)
 
 ## 1.1 Wstęp do hipotezy zerowej
 
+\
 Testowanie hipotezy statystycznej $H_0: \mu = 1$ na poziomie istotności $\alpha = 0.05$, to procedura, która ma na celu ocenę czy średnia wartość z analizowanych danych $\mu$ różni się od przyjętej wartości $1$. Poziom istotności $\alpha = 0.05$ oznacza, że jesteśmy w stanie zaakceptować $5\%$ ryzyko, że popełnimy błąd pierwszego rodzaju. Rozróżnia się dwa takie błędy:
 
 -   Błąd pierwszego rodzaju - fałszywe odrzucenie hipotezy zerowej\
